@@ -1,16 +1,7 @@
 <template>
   <header class="header">
     <div class="logo">КиноПульс</div>
-    <form action="" class="search">
-      <input
-        type="search"
-        class="search-input"
-        placeholder="Фильмы, сериалы, актеры"
-      />
-      <button type="submit" class="search-button">
-        <img src="../../assets/search-icon.svg" alt="search-icon" />
-      </button>
-    </form>
+    <Search />
     <div class="user">
       <img src="../../assets/bookmark.svg" alt="" class="bookmark" />
       <img src="../../assets/avatar.jpg" alt="" class="avatar" />
@@ -19,9 +10,10 @@
 </template>
 
 <script>
+import Search from "./Search";
 export default {
   name: "Header",
-  mounted(){
-  }
+  components: { Search },
+  mounted() {},
 };
 </script>

@@ -12,14 +12,20 @@ export default{
           // ctx.commit('updateFilm', res[1])
         })
     },
+    resetFilm(ctx){
+      ctx.commit('resetFilm')
+    }
   },
   mutations: {
     updateFilm(state, film){
-      console.log(film);
-      // console.log(actors);
       state.film = film[0];
       state.actors = film[1]
       state.isLoading = false
+    },
+    resetFilm(state){
+      state.film = [];
+      state.actors = [];
+      state.isLoading = true;
     }
   },
   state: {

@@ -18,7 +18,7 @@
           >Смотреть трейлер</a
         >
       </div>
-      <a href="" class="more">Подробнее</a>
+      <a :href="getFilm.homepage" class="more">Подробнее</a>
     </div>
     <div class="content">
       <div class="short-info">
@@ -128,7 +128,7 @@ export default {
   name: "Film",
   components: { Preloader },
   methods: {
-    ...mapActions(['fetchFilm']),
+    ...mapActions(['fetchFilm', 'resetFilm']),
     tabClickHandler(e){
       const tabs = document.querySelectorAll('.tabs-item'),
         tabsContent = document.querySelectorAll('.tabs-content'),
@@ -137,16 +137,22 @@ export default {
         tabs[i].classList.remove('tabs-item-active');
       }
       for(let i = 0; i < tabsContent.length; i++){
-        tabsContent[i].classList.remove('visible') 
+        tabsContent[i].classList.remove('visible');
       }
-      activeTab.classList.add('visible')
-      e.target.classList.add('tabs-item-active')
+      activeTab.classList.add('visible');
+      e.target.classList.add('tabs-item-active');
     }
   },
   computed: mapGetters(['getFilm', 'getFilmActors', 'getFilmLoadingStatus']),
   mounted() {
     this.fetchFilm(this.$route.params.name);
   },
+  updated(){
+    console.log('something has changed');
+  },
+  beforeDestroy(){
+    this.resetFilm()
+  }
 };
 </script>
 
@@ -163,6 +169,7 @@ export default {
   position: relative;
   margin: 10px 0;
   flex: 0 0 45%;
+  
 
 }
 .actors__list-item:hover .actors__list-item__content{
