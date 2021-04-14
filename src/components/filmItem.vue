@@ -1,6 +1,12 @@
 <template>
   <li class="film__list-item">
-    <img class="film__list-item__img" :src="'https://image.tmdb.org/t/p/original' + film.poster_path" :alt="film.title">
+    <img 
+      class="film__list-item__img" 
+      :src="'https://image.tmdb.org/t/p/original' + film.poster_path" 
+      :alt="film.title"
+      @error="$event.target.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'"
+
+    >
     <div class="film__list-item__content">
       <h3 class="film__list-item__content-title">
         {{ film.title }}
@@ -20,7 +26,7 @@ export default {
   methods: {
     onClickHandler(){
       console.log('click');
-      router.push(`film/${this.film.id}`)
+      router.push(`/film/${this.film.id}`)
     }
   },
   mounted(){

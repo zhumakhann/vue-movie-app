@@ -1,6 +1,6 @@
 <template>
   <div class="search-wrapper">
-    <form action="" class="search">
+    <form class="search" @submit.prevent="onSubmitHandler">
       <input
         type="search"
         class="search-input"
@@ -40,6 +40,11 @@ export default {
       // router.go(-1)
       await router.push({ path: `/film/${id}` })
       this.resetSearchFilm() 
+    },
+    async onSubmitHandler(e){
+      // console.log(e.target[0].value);
+      this.resetSearchFilm() 
+      await router.push({ path: `/search/${e.target[0].value}` })
     }
   },
   computed: mapGetters(['getSearchFilms'])
@@ -49,7 +54,7 @@ export default {
 .search-wrapper {
   position: relative;
   flex-grow: 1;
-  margin: 0 50px;
+  margin: 0 25px;
 }
 .search-list {
   position: absolute;

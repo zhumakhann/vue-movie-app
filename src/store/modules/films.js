@@ -3,6 +3,7 @@ export default{
     fetchFilms(ctx, type = 'popular'){
       const api = process.env.VUE_APP_TMDB_API;
       const baseURL = process.env.VUE_APP_TMDB_BASE_URL;
+      console.log(type);
       fetch(`${baseURL}/movie/${type}?api_key=${api}`)
         .then(res => res.json())
         .then(films => ctx.commit('updateFilms', films.results))

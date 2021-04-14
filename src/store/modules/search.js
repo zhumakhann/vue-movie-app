@@ -17,18 +17,23 @@ export default{
   },
   mutations: {
     updateFilmsNames(state, newFilms){
-      state.searchFilms = newFilms
+      state.searchFilms = newFilms;
+      state.isSearchFilmsLoading = false
     },
     resetSearchFilm(state){
       state.searchFilms = []
     }
   },
   state: {
-    searchFilms: []
+    searchFilms: [],
+    isSearchFilmsLoading: true,
   },
   getters: {
     getSearchFilms(state){
       return state.searchFilms
+    },
+    getSearchFilmsLoading(state){
+      return state.isSearchFilmsLoading
     }
   }
 }

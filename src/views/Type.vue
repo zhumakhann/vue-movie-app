@@ -3,36 +3,25 @@
     <ul class="films__list" v-if="!getLoadingStatus">
       <filmItem v-for="film in getFilms" v-bind:film="film" :key="film.id" />
     </ul>
+    <Preloader v-else />
   </section>
 </template>
 
 <script>
-// @ is an alias to /src
 import filmItem from '@/components/filmItem.vue';
 import { mapActions, mapGetters } from 'vuex';
-
+import Preloader from '@/components/Preloader'
 
 export default {
-  name: 'Home',
-  components: {
-    filmItem
-  },
-  computed: mapGetters(['getFilms', 'getLoadingStatus']),
-  methods: mapActions(['fetchFilms']),
+  name: "Type",
+  components: { filmItem, Preloader },
+  computed: mapGetters(["getFilms", "getLoadingStatus"]),
+  methods: mapActions(["fetchFilms"]),
   mounted(){
-    this.fetchFilms()
-    // console.log(this.getFilms)
+    this.fetchFilms(this.$route.params.type)
   }
-}
+};
 </script>
 
 <style>
-.films__list{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  list-style: none;
-  padding: 0;
-  
-}
 </style>

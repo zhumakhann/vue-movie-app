@@ -2,7 +2,7 @@
   <div id="app">
     <div class="container">
       <Header />
-      <router-view :key="this.$route.params.name" />
+      <router-view :key="this.$route.path" />
     </div>
   </div>
 </template>
@@ -16,6 +16,9 @@ export default {
   components: {
     Header,
   },
+  mounted(){
+    console.log(this.$route);
+  }
 };
 </script>
 
